@@ -11,7 +11,15 @@ app.listen(port);
 
 // ルーティング
 app.get("/", (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+    res.set({
+        'Access-Control-Allow-Origin': 'http://localhost:8080',
+        'Access-Control-Allow-Credentials': true
+    });
+    res.cookie('6-2', 'value2', {
+        sameSite: "none",
+        httpOnly: true,
+        secure: true
+    });
     res.sendFile(__dirname + '/public/get.html');
 });
 
